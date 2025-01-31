@@ -1,0 +1,44 @@
+DESCRIPCION GENERAL
+Realizacion: 2024
+
+App movil que permite realizar diferentes operaciones al usuario
+
+GENERAL
+  . Registrarse, iniciar y cerrar sesion.
+    .Se puede iniciar sesion como administrador o usuario, dependiendo del rol se muestran vistas diferentes.
+
+  . Contrasenia encriptada
+  . Consumo de API´s
+    . retrofit
+    . okhttp
+
+  . Subir imagen y verla en la aplicacion
+  . Implementacion de  vistas. 
+    . fondos 
+    . imagenes 
+    . tipo de letra 
+    . iconos 
+    . botones
+    . Recycler View, Card View
+    
+  . Implementacion de cookies
+  . Implementacion de una base de datos local
+  . Notificacion simple de inicio de sesion
+
+Administrador
+1. Realizar operaciones de escritura y de lectura 
+  . Iniciar sesion como administrador
+  . Crear usuarios ( nombre, apellidos, (administrador/usuario), agregar imagen de perfil, nombre de usuario, contrasenia)
+  . Consultar usuarios
+  . Eliminar Usuarios
+  . Actualizar datos de un usuario
+2. Consultar historial y favoritos de otros usuarios
+
+Usuario
+  1. Iniciar sesion como usuario
+  2. Consultar API de una pagina web (TVMAZE.COM)
+  3. Guardar registros de busqueda 
+  4. Guardar serie en favoritos
+  5. Actualizar datos
+
+Se utilizó php para las peticiones a la base de datos local.
