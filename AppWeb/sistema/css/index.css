@@ -1,0 +1,109 @@
+/* Centrar el formulario */
+main {
+    display: flex; /* Habilita flexbox */
+    justify-content: space-around; /* Distribuye los divs a los lados */
+    align-items: center; /* Alinea los elementos verticalmente */
+    padding: 20px;
+    gap: 20px; /* Controla la distancia entre los divs */
+  }
+  
+    body {
+      margin: 0; /* Elimina márgenes por defecto */
+      font-family: Arial, sans-serif;
+      background-size: 50% 100%; /* Escala la imagen para cubrir toda la página */
+      background-position: center; /* Centra la imagen */
+      background-attachment: fixed; /* La imagen permanece fija al hacer scroll */
+      color: black; /* Color de texto por defecto */
+  
+    }
+    
+    #loginForm {
+      width: 100%; /* Ajusta el ancho del formulario */
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-size: large;
+    }
+    
+    #loginForm label, #loginForm input, #loginForm button {
+      display: block;
+      margin-bottom: 15px;
+      width: 100%;
+    }
+    
+    #loginForm button {
+      padding: 10px;
+      background-color: #010408;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: large;
+    }
+    
+    #loginForm button:hover {
+      background-color: #0056b3;
+    }
+    
+    #loginForm textarea {
+      width: 100%; /* El campo ocupa todo el ancho del formulario */
+      height: 60px; /* Aumenta la altura del campo */
+      padding: 10px 15px; /* Aumenta el espacio interno */
+      font-size: 1.2rem; /* Aumenta el tamaño del texto */
+      border: 1px solid #ccc; /* Bordes para claridad */
+      border-radius: 5px; /* Bordes redondeados */
+      box-sizing: border-box; /* Incluye el padding en el tamaño total */
+      margin-bottom: 20px; /* Espaciado entre campos */
+  }
+
+    /* Estilo para la imagen */
+    #imageContainer {
+      width: 45%; /* Ajusta el ancho del contenedor de la imagen */
+      text-align: center;
+    }
+    
+    #imageContainer img {
+      max-width:50%; /* Asegura que la imagen no exceda el ancho del contenedor */
+      height: auto; /* Mantiene las proporciones de la imagen */
+      border-radius: 10px;
+    }
+    
+    form button:hover {
+      background-color: #45a049;
+    }
+    
+    #mensaje {
+      margin-top: 15px;
+      color: #d9534f;
+      font-weight: bold;
+    }
+    
+    #navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Centra el contenido principal */
+      position: relative; /* Permite posicionar el logo de forma absoluta */
+      padding: 10px 20px;
+      background-color: #000000; /* Color de fondo opcional */
+      size: 50px;
+    }
+  
+    #navbar h2 {
+      margin: 0; /* Elimina márgenes */
+      color: #ffffff; /* Cambia el color del texto aquí */
+    }
+  
+    #navbar img {
+      height: 90px; /* Ajusta el tamaño del logo */
+      position: relative; /* Posiciona el logo de manera absoluta */
+      right: 20px; /* Lo mueve hacia la derecha */
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+
+  
+  

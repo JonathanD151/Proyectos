@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar pacientes</title>
+  <link rel="stylesheet" href="../css/styleregistrar.css">
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <nav id="navbar">
+    <img src="../images/logo.jpg" alt="Logo">
+    <h2>Office Psychology</h2>
+  </nav>
+
+  <header>
+    <h1>Registra Pacientes </h1>
+    <p></p>
+  </header>
+
+  <main>
+    <form id="formRegistro" class="form-container">
+      <!-- Columna izquierda -->
+      <div class="form-column form-column-left" style="margin-left: 30px; flex: 2;">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre">
+
+        <label for="apellidoPaterno">Apellido Paterno:</label>
+        <input type="text" id="apellidoPaterno" name="apellidoPaterno" placeholder="Ingresa el apellido paterno">
+
+        <label for="apellidoMaterno">Apellido Materno:</label>
+        <input type="text" id="apellidoMaterno" name="apellidoMaterno" placeholder="Ingresa el apellido materno">
+
+        <label for="fecha_ingreso">Fecha de ingreso:</label>
+        <input type="date" id="fecha_ingreso" name="fecha_ingreso">
+
+        <label for="fecha_alta">Fecha de alta:</label>
+        <input type="date" id="fecha_alta" name="fecha_alta">
+
+        <label for="fecha_registro">Fecha de registro:</label>
+        <input type="date" id="fecha_registro" name="fecha_registro">
+
+        <label for="direccion">Direccion:</label>
+        <input type="text" id="direccion" name="direccion" placeholder="Ingresa direccion">
+
+        
+      </div>
+
+      <!-- Columna derecha -->
+      <div class="form-column form-column-right" style="margin-right: 30px; margin-left: 50px; flex: 2;">
+        <label for="observaciones">Observaciones:</label>
+        <textarea id="observaciones" name="observaciones" placeholder="Observaciones"></textarea>
+
+        <label for="listaNegra">Lista Negra:</label>
+        <select id="listaNegra" name="lista_negra">
+          <option value="">Seleccione</option>
+          <option value="si">Sí</option>
+          <option value="no">No</option>
+        </select>
+
+        <label for="estadoCliente">Estado Paciente:</label>
+        <select id="estadoCliente" name="estado_cliente">
+          <option value="">Seleccione</option>
+          <option value="en_espera">En espera</option>
+          <option value="paciente">Paciente</option>
+        </select>
+
+        <p>Contacto</p>
+
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" name="correo" placeholder="Ingresa el correo electrónico">
+
+        <label for="celular">Celular:</label>
+        <input type="text" id="celular" name="celular" placeholder="Ingresa el número celular">
+
+        <label for="facebook">Red Social:</label>
+        <input type="text" id="facebook" name="facebook" placeholder="Ingresa Red Social">
+
+        <button type="submit">Registrar paciente</button>
+
+      </div>
+    </form>
+    
+
+    <!-- Resultados -->
+    <div id="resultados" class="resultados-container">
+      <!-- Los resultados se generarán dinámicamente aquí -->
+    </div>
+
+    <footer>
+      <button class="btn-atras" onclick="location.href='operaciones.html'"></button>
+      <button class ="btn-footer" onclick="location.href='consultas.html'">Consultar Pacientes</button>
+      <button class ="btn-footer" onclick="location.href='actualizar.html'">Actualizar Paciente</button>
+    </footer>
+  </main>
+
+
+
+  <script>
+    document.getElementById('formRegistro').addEventListener('submit', async function (event) {
+      event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+  
+      // Recuperar el token desde localStorage
+      const token = localStorage.getItem('token');
+      if (!token) {
+          alert('Debe iniciar sesión para realizar esta operación.');
+          window.location.href = './index.html'; // Redirige al login si no hay token
+          return;
+      }
+  
+      // Captura los datos del formulario
+      const data = {
+          nombre: document.getElementById('nombre').value.trim(),
+          apellidoPaterno: document.getElementById('apellidoPaterno').value.trim(),
+          apellidoMaterno: document.getElementById('apellidoMaterno').value.trim(),
+          fecha_ingreso: document.getElementById('fecha_ingreso').value,
+          fecha_alta: document.getElementById('fecha_alta').value,
+          fecha_registro: document.getElementById('fecha_registro').value,
+          direccion: document.getElementById('direccion').value.trim(),
+          observaciones: document.getElementById('observaciones').value.trim(),
+          lista_negra: document.getElementById('listaNegra').value,
+          estado_cliente: document.getElementById('estadoCliente').value,
+          correo: document.getElementById('correo').value.trim(),
+          celular: document.getElementById('celular').value.trim(),
+          facebook: document.getElementById('facebook').value.trim(),
+      };
+  
+      // Validar los campos requeridos (opcional)
+      if (!data.nombre && !data.apellidoPaterno && !data.apellidoMaterno) {
+          alert('Por favor, ingresa al menos nombre, apellido paterno o materno.');
+          return;
+      }
+  
+      try {
+          // Realiza la solicitud al backend con el token en el encabezado Authorization
+          const response = await fetch('http://localhost:3000/registrarCliente', {
+              method: 'POST',
+              headers: { 
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}` // Incluye el token en el encabezado
+              },
+              body: JSON.stringify(data),
+          });
+  
+          const result = await response.json();
+  
+          // Manejar la respuesta del servidor
+          if (response.ok) {
+              alert(result.message || 'Registro exitoso');
+  
+              // Limpiar el formulario tras el registro
+              document.getElementById('formRegistro').reset();
+  
+              // Mostrar los datos registrados
+              const resultadosDiv = document.getElementById('resultados');
+              resultadosDiv.innerHTML = ''; // Limpia el contenido anterior
+  
+              resultadosDiv.innerHTML = `
+                  <h3>Datos Registrados:</h3>
+                  <ul>
+                      <li><strong>ID Cliente:</strong> ${result.datos.idCliente || 'N/A'}</li>
+                      <li><strong>Nombre:</strong> ${result.datos.nombre || 'N/A'}</li>
+                      <li><strong>Apellido Paterno:</strong> ${result.datos.apellidoPaterno || 'N/A'}</li>
+                      <li><strong>Apellido Materno:</strong> ${result.datos.apellidoMaterno || 'N/A'}</li>
+                      <li><strong>Correo:</strong> ${result.datos.correo || 'N/A'}</li>
+                      <li><strong>Celular:</strong> ${result.datos.celular || 'N/A'}</li>
+                      <li><strong>Facebook:</strong> ${result.datos.facebook || 'N/A'}</li>
+                      <li><strong>Estado Cliente:</strong> ${result.datos.estado_cliente || 'N/A'}</li>
+                      <li><strong>Lista Negra:</strong> ${result.datos.lista_negra || 'N/A'}</li>
+                      <li><strong>Observaciones:</strong> ${result.datos.observaciones || 'N/A'}</li>
+                      <li><strong>Dirección:</strong> ${result.datos.direccion || 'N/A'}</li>
+                  </ul>
+              `;
+          } else {
+              alert(result.error || 'Ocurrió un error al registrar');
+          }
+      } catch (error) {
+          console.error('Error al enviar los datos:', error);
+          alert('Error de conexión con el servidor');
+      }
+    });
+  </script>
+
+<!--Al darle enter pasa al siguiente campo-->
+<script>
+  document.getElementById('formRegistro').addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+          event.preventDefault();
+
+          const inputs = Array.from(this.querySelectorAll('input, textarea, select, button'));
+          const currentIndex = inputs.indexOf(event.target);
+
+          if (currentIndex >= 0 && currentIndex < inputs.length - 1) {
+              inputs[currentIndex + 1].focus();
+          }
+      }
+  });
+</script>
+
+
+
+</body>
+</html>

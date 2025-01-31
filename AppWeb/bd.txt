@@ -1,0 +1,82 @@
+tabla cliente
+
+idcliente
+apellidopaterno
+apellidomaterno
+fecha_ingreso
+fecha_alta
+fecha_registro
+observaciones
+
+
+tabla lista negra
+
+idcliente
+lista_negra (si,no)
+
+
+tabla contacto
+
+idcontacto
+idcliente
+celular
+correo
+facebook
+dirección (cadena)
+
+
+tabla estado_cliente
+
+idcliente
+estado_cliente (pendiente, paciente)
+
+
+
+
+
+
+-- Crear tabla Cliente
+CREATE TABLE cliente (
+    idcliente INT PRIMARY KEY AUTO_INCREMENT,
+    apellidopaterno VARCHAR(100),
+    apellidomaterno VARCHAR(100),
+    fecha_ingreso DATE,
+    fecha_alta DATE,
+    fecha_registro DATE,
+    observaciones TEXT
+);
+
+-- Crear tabla Lista Negra
+CREATE TABLE lista_negra (
+    idcliente INT PRIMARY KEY,
+    lista_negra ENUM('si', 'no') NOT NULL,
+    FOREIGN KEY (idcliente) REFERENCES cliente(idcliente)
+);
+
+-- Crear tabla Contacto
+CREATE TABLE contacto (
+    idcontacto INT PRIMARY KEY AUTO_INCREMENT,
+    idcliente INT,
+    celular VARCHAR(15),
+    correo VARCHAR(100),
+    facebook VARCHAR(100),
+    direccion VARCHAR(255),
+    FOREIGN KEY (idcliente) REFERENCES cliente(idcliente)
+);
+
+-- Crear tabla Estado Cliente
+CREATE TABLE estado_cliente (
+    idcliente INT PRIMARY KEY,
+    estado_cliente ENUM('pendiente', 'paciente') NOT NULL,
+    FOREIGN KEY (idcliente) REFERENCES cliente(idcliente)
+);
+
+
+
+
+
+
+
+
+
+

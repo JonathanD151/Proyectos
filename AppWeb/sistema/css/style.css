@@ -1,0 +1,212 @@
+/* Centrar el formulario */
+main {
+  display: flex; /* Habilita flexbox */
+  justify-content: space-around; /* Distribuye los divs a los lados */
+  align-items: center; /* Alinea los elementos verticalmente */
+  padding: 20px;
+  gap: 20px; /* Controla la distancia entre los divs */
+}
+
+  body {
+    margin: 0; /* Elimina márgenes por defecto */
+    font-family: Arial, sans-serif;
+    background-size: 50% 100%; /* Escala la imagen para cubrir toda la página */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* La imagen permanece fija al hacer scroll */
+    color: black; /* Color de texto por defecto */
+
+  }
+  
+  #loginForm {
+    width: 100%; /* Ajusta el ancho del formulario */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #loginForm label, #loginForm input, #loginForm button {
+    display: block;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  #loginForm button {
+    padding: 10px;
+    background-color: #010408;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #loginForm button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilo para la imagen */
+  #imageContainer {
+    width: 45%; /* Ajusta el ancho del contenedor de la imagen */
+    text-align: center;
+  }
+  
+  #imageContainer img {
+    max-width:50%; /* Asegura que la imagen no exceda el ancho del contenedor */
+    height: auto; /* Mantiene las proporciones de la imagen */
+    border-radius: 10px;
+  }
+  
+  form button:hover {
+    background-color: #45a049;
+  }
+  
+  #mensaje {
+    margin-top: 15px;
+    color: #d9534f;
+    font-weight: bold;
+  }
+  
+  #navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el contenido principal */
+    position: relative; /* Permite posicionar el logo de forma absoluta */
+    padding: 10px 20px;
+    background-color: #000000; /* Color de fondo opcional */
+    size: 50px;
+  }
+
+  #navbar h2 {
+    margin: 0; /* Elimina márgenes */
+    color: #ffffff; /* Cambia el color del texto aquí */
+  }
+
+  #navbar img {
+    height: 90px; /* Ajusta el tamaño del logo */
+    position: relative; /* Posiciona el logo de manera absoluta */
+    right: 20px; /* Lo mueve hacia la derecha */
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Estilo de los botones */
+  button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilo para el contenedor de operaciones */
+#operaciones {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  flex-direction: column;  /* Los botones estarán apilados verticalmente */
+  align-items: center;     /* Centra los botones verticalmente */
+  gap: 15px;               /* Espacio entre los botones */
+  margin-top: -150px;        /* Espacio superior */
+  height: 50vh;           /* Hace que el contenedor ocupe toda la altura de la pantalla */
+  justify-content: center; /* Centra los botones verticalmente */
+}
+
+/* Centrar el contenedor de operaciones dentro de main */
+main {
+  display: flex;
+  justify-content: center; /* Centra el div de operaciones horizontalmente */
+  align-items: center;     /* Centra el div de operaciones verticalmente */
+  height: 100vh;           /* Asegura que el main ocupe toda la altura de la pantalla */
+}
+  
+  /* Estilo de los botones */
+  #operaciones button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px;
+  }
+  
+  #operaciones button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  footer p {
+    font-size: 14px;
+  }
+
+  /* Estilo para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#btnAtras {
+  background-color: white;
+  color: #4caf50;
+  border: 1px solid #4caf50;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#btnAtras:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
+footer {
+  position: fixed; /* Hace que el pie de página se quede fijo en la parte inferior */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #3e2b7e; /* Color de fondo del pie de página */
+    text-align: center;
+    z-index: 1000; /* Asegura que el pie de página esté encima de otros elementos */
+}
+
+header {
+  text-align: center;
+  margin-top: 20px;
+}

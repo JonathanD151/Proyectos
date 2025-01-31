@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Clientes</title>
+  <link rel="stylesheet" href="../css/styleconsultas.css">
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <nav id="navbar">
+    <img src="../images/logo.jpg" alt="Logo">
+    <h2>Office Psychology</h2>
+  </nav>
+
+  <header>
+    <h1>Consultar Pacientes</h1>
+      <p></p>
+  </header>
+
+  <main>
+    <div id="contenedor">
+      <!-- Contenedor del formulario -->
+      <div id="formulario">
+        <form id="formConsulta">
+          <label for="idCliente">ID Paciente:</label>
+          <input type="number" id="idCliente" name="idCliente" placeholder="Ingresa el ID del cliente">
+  
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre">
+  
+          <label for="apellidoPaterno">Apellido Paterno:</label>
+          <input type="text" id="apellidoPaterno" name="apellidoPaterno" placeholder="Ingresa el apellido paterno">
+  
+          <label for="apellidoMaterno">Apellido Materno:</label>
+          <input type="text" id="apellidoMaterno" name="apellidoMaterno" placeholder="Ingresa el apellido materno">
+  
+          <label for="listaNegra">Lista Negra:</label>
+          <select id="listaNegra" name="listaNegra">
+            <option value="">Seleccione</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+          </select>
+  
+          <label for="estadoCliente">Estado Cliente:</label>
+          <select id="estadoCliente" name="estadoCliente">
+            <option value="">Seleccione</option>
+            <option value="en_espera">En espera</option>
+            <option value="paciente">Paciente</option>
+          </select>
+  
+          <button type="submit">Buscar Pacientes</button>
+        </form>
+
+        <button id="printButton" style="display: flex; align-items: center; gap: 5px; padding: 10px 20px; font-size: 16px;">
+        🖨️ Imprimir
+        </button>
+
+        <button id="eliminarPacientes" style="margin-top: 10px;">Eliminar Pacientes</button>
+        <p>Ten en cuenta que se eliminaran los pacientes que se encuentren en los resultados de busqueda</p>
+        
+      </div>
+  
+      <!-- Contenedor de los resultados -->
+      <div id="resultados"> 
+        <!-- Los resultados se generarán dinámicamente aquí -->
+        <p>No hay resultados por mostrar.</p>
+      </div>
+      
+    </div>
+    <br><br><br><br><br><br>
+    <footer>
+      <button class="btn-atras" onclick="location.href='operaciones.html'"></button>
+      <button onclick="location.href='registrar.html'">Registrar Paciente</button>
+      <button onclick="location.href='actualizar.html'">Actualizar Paciente</button>
+    </footer>
+   
+  </main>
+
+
+
+    <script>
+      function goBack() {
+          window.history.back(); // Navega a la página anterior
+      }
+    </script>
+
+  <script>
+    document.querySelector('#formConsulta').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Evita el envío tradicional del formulario
+
+    // Recuperar el token
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Debe iniciar sesión para realizar esta operación.');
+        window.location.href = '../index.html'; // Redirige al login si no hay token
+        return;
+    }
+
+    // Captura los datos del formulario
+    const formData = new FormData(e.target);
+    const queryParams = new URLSearchParams(formData).toString(); // Convierte los datos a una cadena de consulta
+
+    try {
+        // Realiza la solicitud al backend con el token
+        const response = await fetch(`/consultarClientes?${queryParams}`, {
+            method: 'GET', // Cambiado a GET
+            headers: {
+                'Authorization': `Bearer ${token}`, // Incluye el token en el encabezado
+            },
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(`Error al obtener los datos: ${errorMessage}`);
+        }
+
+        const clientes = await response.json();
+
+        // Construye la tabla con los resultados
+        const resultadosDiv = document.getElementById('resultados');
+        if (clientes.length === 0) {
+            resultadosDiv.innerHTML = '<p>No se encontraron resultados.</p>';
+            return;
+        }
+
+        let tableHTML = `
+          <table border="1">
+            <thead>
+              <tr>
+                <th>ID Paciente</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha Ingreso</th>
+                <th>Fecha Alta</th>
+                <th>Fecha Registro</th>
+                <th>Observaciones</th>
+                <th>Lista Negra</th>
+                <th>Estado</th>
+                <th>Celular</th>
+                <th>Correo</th>
+                <th>Facebook</th>
+                <th>Dirección</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+
+        clientes.forEach((cliente) => {
+            tableHTML += `
+                <tr>
+                  <td>${cliente.idcliente}</td>
+                  <td>${cliente.nombre}</td>
+                  <td>${cliente.apellidopaterno}</td>
+                  <td>${cliente.apellidomaterno}</td>
+                  <td>${cliente.fecha_ingreso || ''}</td>
+                  <td>${cliente.fecha_alta || ''}</td>
+                  <td>${cliente.fecha_registro || ''}</td>
+                  <td>${cliente.observaciones || ''}</td>
+                  <td>${cliente.lista_negra || 'No'}</td>
+                  <td>${cliente.estado_cliente}</td>
+                  <td>${cliente.celular || ''}</td>
+                  <td>${cliente.correo || ''}</td>
+                  <td>${cliente.facebook || ''}</td>
+                  <td>${cliente.direccion || ''}</td>
+                </tr>
+            `;
+        });
+
+        tableHTML += '</tbody></table>';
+        resultadosDiv.innerHTML = tableHTML;
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('resultados').innerHTML = `<p>Error: ${error.message}</p>`;
+    }
+});
+
+  </script>
+
+  <script>
+    // Script para manejar la impresión
+    document.getElementById('printButton').addEventListener('click', function () {
+    const resultadosDiv = document.getElementById('resultados');
+
+    // Crear una nueva ventana de impresión
+    const printWindow = window.open('', '_blank', 'width=800,height=600');
+    printWindow.document.open();
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>Imprimir Resultados</title>
+            <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+                h3 { text-align: center; }
+                ul { list-style-type: none; padding: 0; }
+                li { margin-bottom: 10px; }
+            </style>
+        </head>
+        <body>
+            ${resultadosDiv.innerHTML}
+            <script>
+                window.onload = function () {
+                    window.print();
+                    window.close();
+                };
+            <\/script>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+  });
+
+</script>
+
+<script>
+  document.getElementById('eliminarPacientes').addEventListener('click', async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Debe iniciar sesión para realizar esta operación.');
+        window.location.href = './index.html'; // Redirige al login si no hay token
+        return;
+    }
+
+    // Encuentra todos los ID de los pacientes mostrados en el div resultados
+    const filas = document.querySelectorAll('#resultados table tbody tr');
+    const ids = Array.from(filas).map(fila => fila.cells[0].textContent.trim()); // Extrae el ID del primer <td> de cada fila
+
+    if (ids.length === 0) {
+        alert('No hay pacientes para eliminar.');
+        return;
+    }
+
+    if (!confirm(`¿Estás seguro de eliminar ${ids.length} pacientes?`)) {
+        return;
+    }
+
+    try {
+        // Enviar la lista de IDs al backend para su eliminación
+        const response = await fetch('/eliminarPacientes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`, // Incluye el token en el encabezado
+            },
+            body: JSON.stringify({ ids }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert(result.message || 'Pacientes eliminados exitosamente.');
+            document.getElementById('resultados').innerHTML = ''; // Limpia el div resultados
+        } else {
+            alert(result.error || 'Error al eliminar los pacientes.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Ocurrió un error al intentar eliminar los pacientes.');
+    }
+  });
+</script>
+
+
+</body>
+</html> 

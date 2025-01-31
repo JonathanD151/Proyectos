@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualizar pacientes</title>
+  <link rel="stylesheet" href="../css/styleactualizar.css">
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <nav id="navbar">
+    <img src="../images/logo.jpg" alt="Logo">
+    <h2>Office Psychology</h2>
+  </nav>
+
+  <header>
+    <h1>Actualizar Pacientes </h1>
+    <p></p>
+  </header>
+
+  <main>
+    <div id="contenedor-formularios" class="flex-container">
+      <!-- Lado izquierdo -->
+      <div id="lado-izquierdo" class="left-container">
+        <!-- Formulario de consulta -->
+        <div id="div-izquierdo" class="form-container">
+          <h3> Busca a un paciente</h3>
+          <form id="formConsulta" class="form">
+            <label for="idCliente">ID Paciente:</label>
+          <input type="number" id="idCliente" name="idCliente" placeholder="Ingresa el ID del cliente">
+  
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre">
+  
+          <label for="apellidoPaterno">Apellido Paterno:</label>
+          <input type="text" id="apellidoPaterno" name="apellidoPaterno" placeholder="Ingresa el apellido paterno">
+  
+          <label for="apellidoMaterno">Apellido Materno:</label>
+          <input type="text" id="apellidoMaterno" name="apellidoMaterno" placeholder="Ingresa el apellido materno">
+  
+          <label for="listaNegra">Lista Negra:</label>
+          <select id="listaNegra" name="listaNegra">
+            <option value="">Seleccione</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
+          </select>
+  
+          <label for="estadoCliente">Estado Cliente:</label>
+          <select id="estadoCliente" name="estadoCliente">
+            <option value="">Seleccione</option>
+            <option value="en_espera">En espera</option>
+            <option value="paciente">Paciente</option>
+          </select>
+  
+            <label for="celular">Celular:</label>
+            <input type="text" id="celular" name="celular" placeholder="Ingresa el número celular">
+  
+            <button type="submit">Buscar paciente</button>
+          </form>
+        </div>
+  
+       
+      </div>
+  
+      <!-- Lado derecho -->
+      <div id="lado-derecho" class="right-container">
+        <h3>Actualiza datos del paciente</h3>
+        <form id="formActualizar" class="form-container">
+          <div class="form-column form-column-left">
+
+            <label for="idCliente">ID del paciente:</label>
+            <input type="text" id="idCliente" name="idCliente" placeholder="Ingresa el id del paciente">
+
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre">
+  
+            <label for="apellidoPaterno">Apellido Paterno:</label>
+            <input type="text" id="apellidoPaterno" name="apellidoPaterno" placeholder="Ingresa el apellido paterno">
+  
+            <label for="apellidoMaterno">Apellido Materno:</label>
+            <input type="text" id="apellidoMaterno" name="apellidoMaterno" placeholder="Ingresa el apellido materno">
+  
+            <label for="fecha_ingreso">Fecha de ingreso:</label>
+            <input type="date" id="fecha_ingreso" name="fecha_ingreso">
+  
+            <label for="fecha_alta">Fecha de alta:</label>
+            <input type="date" id="fecha_alta" name="fecha_alta">
+  
+            <label for="fecha_registro">Fecha de registro:</label>
+            <input type="date" id="fecha_registro" name="fecha_registro">
+  
+          </div>
+  
+          <div class="form-column form-column-right">
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" placeholder="Ingresa dirección">
+
+            <label for="observaciones">Observaciones:</label>
+            <textarea id="observaciones" name="observaciones" placeholder="Observaciones"></textarea>
+  
+            <label for="listaNegra">Lista Negra:</label>
+            <select id="listaNegra" name="lista_negra">
+              <option value="">Seleccione</option>
+              <option value="si">Sí</option>
+              <option value="no">No</option>
+            </select>
+  
+            <label for="estadoCliente">Estado Paciente:</label>
+            <select id="estadoCliente" name="estado_cliente">
+              <option value="">Seleccione</option>
+              <option value="en_espera">En espera</option>
+              <option value="paciente">Paciente</option>
+            </select>
+  
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" placeholder="Ingresa el correo electrónico">
+  
+            <label for="celular">Celular:</label>
+            <input type="text" id="celular" name="celular" placeholder="Ingresa el número celular">
+  
+            <label for="facebook">Red Social:</label>
+            <input type="text" id="facebook" name="facebook" placeholder="Ingresa Red Social">
+  
+            <button type="submit">Actualizar datos de paciente</button>
+          </div>
+        </form>
+        <p><br>Llena los campos del lado izquierdo para buscar a un paciente, una vez encontrado,<br>
+           actualiza los datos en el campo derecho</p>
+        
+      </div>
+       
+    </div>
+    <br> <br> <br><br> <br><br> <br> <br><br> <br> 
+    <!-- Resultados -->
+    <div style="position: relative;">
+      <div id="resultados" class="resultados-container">
+        <!-- Resultados generados dinámicamente -->
+        <p>Resultado de consulta.</p>
+      </div>
+    </div>
+    <br> <br> <br><br> <br>
+
+    <footer>
+      <button class="btn-atras" onclick="location.href='operaciones.html'"></button>
+      <button class ="btn-footer" onclick="location.href='consultas.html'">Consultar Pacientes</button>
+      <button class ="btn-footer" onclick="location.href='registrar.html'">Registrar Paciente</button>
+    </footer>
+  </main>
+
+  <script>
+    document.querySelector('#formConsulta').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Evita el envío tradicional del formulario
+
+    // Recuperar el token
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Debe iniciar sesión para realizar esta operación.');
+        window.location.href = './index.html'; // Redirige al login si no hay token
+        return;
+    }
+
+    // Captura los datos del formulario
+    const formData = new FormData(e.target);
+    const queryParams = new URLSearchParams(formData).toString(); // Convierte los datos a una cadena de consulta
+
+    try {
+        // Realiza la solicitud al backend con el token
+        const response = await fetch(`/consultarClientes?${queryParams}`, {
+            method: 'GET', // Cambiado a GET
+            headers: {
+                'Authorization': `Bearer ${token}`, // Incluye el token en el encabezado
+            },
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(`Error al obtener los datos: ${errorMessage}`);
+        }
+
+        const clientes = await response.json();
+
+        // Construye la tabla con los resultados
+        const resultadosDiv = document.getElementById('resultados');
+        if (clientes.length === 0) {
+            resultadosDiv.innerHTML = '<p>No se encontraron resultados.</p>';
+            return;
+        }
+
+        let tableHTML = `
+          <table border="1">
+            <thead>
+              <tr>
+                <th>ID Paciente</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha Ingreso</th>
+                <th>Fecha Alta</th>
+                <th>Fecha Registro</th>
+                <th>Observaciones</th>
+                <th>Lista Negra</th>
+                <th>Estado</th>
+                <th>Celular</th>
+                <th>Correo</th>
+                <th>Facebook</th>
+                <th>Dirección</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+
+        clientes.forEach((cliente) => {
+            tableHTML += `
+                <tr>
+                  <td>${cliente.idcliente}</td>
+                  <td>${cliente.nombre}</td>
+                  <td>${cliente.apellidopaterno}</td>
+                  <td>${cliente.apellidomaterno}</td>
+                  <td>${cliente.fecha_ingreso || ''}</td>
+                  <td>${cliente.fecha_alta || ''}</td>
+                  <td>${cliente.fecha_registro || ''}</td>
+                  <td>${cliente.observaciones || ''}</td>
+                  <td>${cliente.lista_negra || 'No'}</td>
+                  <td>${cliente.estado_cliente}</td>
+                  <td>${cliente.celular || ''}</td>
+                  <td>${cliente.correo || ''}</td>
+                  <td>${cliente.facebook || ''}</td>
+                  <td>${cliente.direccion || ''}</td>
+                </tr>
+            `;
+        });
+
+        tableHTML += '</tbody></table>';
+        resultadosDiv.innerHTML = tableHTML;
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('resultados').innerHTML = `<p>Error: ${error.message}</p>`;
+    }
+});
+
+  </script>
+
+
+<script>
+  document.querySelector('#formActualizar').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Evita el envío tradicional del formulario
+
+    // Captura los datos del formulario
+    const formData = new FormData(e.target);
+
+    // Convierte los datos del formulario en un objeto JSON
+    const data = Object.fromEntries(formData.entries());
+
+    // Recuperar el token de autenticación si es necesario
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Debe iniciar sesión para realizar esta operación.');
+      window.location.href = './index.html'; // Redirige al login si no hay token
+      return;
+    }
+
+    try {
+      // Realiza la solicitud al backend
+      const response = await fetch('/actualizarCliente', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // Incluye el token en el encabezado
+        },
+        body: JSON.stringify(data), // Envia los datos del formulario en formato JSON
+      });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+
+        // Comprobar si el error es sobre el celular duplicado
+        if (errorResponse.error === 'El número de celular ya está registrado por otro cliente') {
+          alert('Error: El número de celular ya está registrado por otro cliente. Por favor, use un número diferente.');
+        } else {
+          // Otros errores
+          alert(`Error al actualizar los datos: ${errorResponse.error}`);
+        }
+        return;
+      }
+
+      const result = await response.json();
+      console.log('Respuesta del servidor:', result);
+
+      // Mostrar un mensaje de éxito
+      alert('Los datos del paciente han sido actualizados correctamente.');
+
+      // Opcional: Limpiar el formulario después de actualizar
+      e.target.reset();
+
+    } catch (error) {
+      console.error('Error:', error);
+      alert(`Error: ${error.message}`);
+    }
+  });
+</script>
+
+
+
+<!--Al darle enter al formulario pasa al siguiente campo-->
+<script>
+  document.getElementById('formActualizar').addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+          event.preventDefault();
+
+          const inputs = Array.from(this.querySelectorAll('input, textarea, select, button'));
+          const currentIndex = inputs.indexOf(event.target);
+
+          if (currentIndex >= 0 && currentIndex < inputs.length - 1) {
+              inputs[currentIndex + 1].focus();
+          }
+      }
+  });
+</script>

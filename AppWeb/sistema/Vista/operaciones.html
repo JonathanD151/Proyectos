@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operaciones - Clientes</title>
+  <link rel="stylesheet" href="../css/operaciones.css">
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <nav id="navbar">
+    <img src="../images/logo.jpg" alt="Logo">
+    <h2>Office Psychology</h2>
+  </nav>
+
+  <header>
+    
+  </header>
+
+  <main>
+    <!-- Botones para cada operación -->
+    <div id="operaciones">
+        <div id="operaciones">
+          <br> <br>
+            <button onclick="location.href='consultas.html'">Consultar Paciente</button>
+            <button onclick="location.href='registrar.html'">Registrar  Paciente</button>
+            <button onclick="location.href='actualizar.html'">Actualizar Paciente</button>
+            <button id="cerrarSesion">Cerrar Sesión</button>
+          </div>
+    </div>
+
+    <!-- Div de resultados de las operaciones -->
+      <!-- Aquí se mostrarán los resultados según la operación elegida -->
+    </div>
+  </main>
+
+
+  <script src="../script.js"></script>
+  <script>
+    document.getElementById('cerrarSesion').addEventListener('click', () => {
+    // Eliminar el token de localStorage
+    localStorage.removeItem('token');
+
+    // Opcional: Limpiar todo el almacenamiento local
+    localStorage.clear();
+
+    // Redirigir al usuario al inicio de sesión
+    window.location.href = './index.html';
+    });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: black; /* Color de texto por defecto */
+  overflow-x: auto;
+  position: relative; /* Necesario para el pseudo-elemento */
+}
+
+body::before {
+  content: "";
+  position: fixed; /* Para que el fondo permanezca fijo al hacer scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/fondo.png'); /* Ruta a la imagen */
+  background-repeat: repeat; /* Repetir la imagen en forma de mosaico */
+  background-size: 200px 200px; /* Tamaño original de la imagen */
+  background-position: center; /* Centra la imagen */
+  opacity: 0.7; /* Ajusta la transparencia de la imagen */
+  z-index: -1; /* Envía el fondo detrás del contenido */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+/* Contenedor principal */
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  height: 80vh; /* Altura total del viewport */
+  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+}
+
+/* Lado izquierdo */
+.left-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35%; /* Proporción del lado izquierdo */
+  padding: 20px;
+  background-color: white;
+  margin: 10px;
+}
+
+#div-izquierdo {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+#resultados {
+  max-width: 100%; /* Aumenta el ancho máximo */
+  max-height: 500px; /* Limita la altura máxima */
+  height: auto; /* Ajusta la altura automáticamente */
+  overflow: auto; /* Desplazamiento tanto horizontal como vertical */
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  flex-shrink: 0; /* Evita que el div se reduzca */
+  box-sizing: border-box; /* Asegura que el padding y el borde no aumenten el tamaño */
+}
+
+#resultados table {
+  width: 100%; /* La tabla ocupa todo el ancho del contenedor */
+  table-layout: fixed; /* Establece un layout fijo para la tabla */
+  border-collapse: collapse; /* Elimina los espacios entre celdas */
+}
+
+#resultados table th,
+#resultados table td {
+  padding: 10px; /* Espaciado interno de celdas */
+  border: 1px solid #ddd; /* Bordes de las celdas */
+  text-align: center; /* Centrado del contenido */
+  word-wrap: break-word; /* Ajuste de texto largo dentro de la celda */
+  overflow: hidden; /* Oculta el desbordamiento de contenido dentro de las celdas */
+  text-overflow: ellipsis; /* Añade puntos suspensivos si el contenido es demasiado largo */
+}
+
+#resultados table th {
+  background-color: #f4f4f4; /* Fondo para los encabezados */
+  white-space: nowrap; /* Evita que los encabezados se dividan */
+}
+
+/* Lado derecho */
+.right-container {
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  max-height: 100%;
+  padding: 20px; /* Espacio interno para separar el contenido */
+  margin: 20px; /* Espacio externo para separar el formulario de otros elementos */
+  box-sizing: border-box; /* Incluye el padding en las dimensiones totales */
+}
+
+
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px; /* Espacio entre las columnas */
+}
+
+
+.form-column {
+  flex: 1;
+}
+
+textarea {
+  resize: none;
+}
+
+/* General */
+form label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+
+form input, form select, form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra el contenido principal */
+  position: relative; /* Permite posicionar el logo de forma absoluta */
+  padding: 10px 20px;
+  background-color: #000000; /* Color de fondo opcional */
+  size: 50px;
+}
+
+#navbar h2 {
+  margin: 0; /* Elimina márgenes */
+  color: #ffffff; /* Cambia el color del texto aquí */
+}
+
+#navbar img {
+  height: 90px; /* Ajusta el tamaño del logo */
+  position: relative; /* Posiciona el logo de manera absoluta */
+  right: 20px; /* Lo mueve hacia la derecha */
+}
+
+
+footer {
+  position: relative; /* O 'sticky', si es necesario */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente los botones */
+  align-items: center; /* Centra verticalmente los botones */
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Estilo para los botones dentro del footer */
+footer .btn-footer {
+  background-color: #010509; /* Fondo del botón */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  text-align: center; /* Centra el texto dentro del botón */
+  transition: background-color 0.3s ease; /* Efecto al pasar el mouse */
+  margin: 0 30px; /* Espaciado entre botones */
+}
+
+/* Hover para los botones */
+footer .btn-footer:hover {
+    background-color: #0056b3; /* Cambia el color al pasar el mouse */
+}
+
+
+
+.btn-atras {
+  width: 80px; /* Ajusta el ancho del botón */
+  height: 60px; /* Ajusta el alto del botón */
+  background-image: url('images/flechaatras.png'); /* Ruta de la imagen */
+  background-size: contain; /* Escala la imagen dentro del botón */
+  background-repeat: no-repeat; /* No repetir la imagen */
+  background-position: center; /* Centra la imagen en el botón */
+  border: none; /* Sin bordes */
+  cursor: pointer; /* Cambia el cursor a mano al pasar por el botón */
+  outline: none; /* Elimina contorno al hacer clic */
+  background-color: transparent; /* Fondo transparente */
+  display: inline-block; /* Asegura que se comporte como un elemento en línea */
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  text-align: center;
+  color: #000000;
+  margin-bottom: 20px;
+}

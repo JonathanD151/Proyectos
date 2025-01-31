@@ -1,0 +1,258 @@
+  html, body {
+    height: 100%;
+    margin: 0; /* Elimina los márgenes por defecto */
+  }
+ 
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-size: 50% 100%; /* Escala la imagen para cubrir toda la página */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* La imagen permanece fija al hacer scroll */
+    color: black; /* Color de texto por defecto */
+    overflow-x: auto;
+    background-image: url('../images/fondo.png'); /* Ruta a la imagen */
+    background-repeat: repeat; /* Repetir la imagen en forma de mosaico */
+    background-size: 200px 200px; /* Tamaño original de la imagen */
+
+  }
+   
+  
+  /* Contenedor principal */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    width: 100%;
+    max-width: 1500px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo del formulario */
+  form {
+    margin-bottom: 20px;
+    max-width: 600px;  /* Puedes ajustar este valor según el tamaño que desees para el formulario */
+
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    text-align: center;
+    color: #ad0f0f;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #010211;
+  }
+  
+  input[type="number"],
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  button:not(.btn-atras) {
+    width: 100%;
+    padding: 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+  button:hover {
+    background-color: #13102260;
+  }
+  
+  /* Estilo de los resultados */
+  #resultados {
+    width: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #resultados p {
+    text-align: center;
+    color: #666;
+  }
+  
+  #resultados table {
+    width: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  #resultados table th,
+  #resultados table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  #resultados table th {
+    background-color: #f4f4f4;
+  }
+
+  #navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el contenido principal */
+    position: relative; /* Permite posicionar el logo de forma absoluta */
+    padding: 10px 20px;
+    background-color: #000000; /* Color de fondo opcional */
+    size: 50px;
+  }
+
+  #navbar h2 {
+    margin: 0; /* Elimina márgenes */
+    color: #ffffff; /* Cambia el color del texto aquí */
+  }
+
+  #navbar img {
+    height: 90px; /* Ajusta el tamaño del logo */
+    position: relative; /* Posiciona el logo de manera absoluta */
+    right: 20px; /* Lo mueve hacia la derecha */
+  }
+  
+
+  #contenedor {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Espacio entre columnas */
+    width: 100%;
+    height: 100%; /* Asegura que ambas columnas ocupen toda la altura disponible */
+  }
+  
+  /* Estilo del formulario */
+  #formulario {
+    flex: 1; /* Ocupa la mitad del espacio */
+    max-width: 45%; /* Limita el ancho máximo */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo de los resultados */
+  #resultados {
+    flex: 2 !important; /* Permite que crezca más */
+    max-width: 70% !important; /* Aumenta el ancho máximo */
+    max-height: 500px !important; /* Aumenta la altura máxima */
+    height: auto !important; /* Ajusta automáticamente la altura */
+    overflow-x: auto; /* Habilita desplazamiento horizontal si es necesario */
+    overflow-y: auto; /* Habilita desplazamiento vertical si es necesario */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Ajuste para tablas dentro de resultados */
+  #resultados table {
+    width: 100%; /* La tabla se ajusta al contenedor */
+    border-collapse: collapse;
+  }
+  
+  #resultados table th,
+  #resultados table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  #resultados table th {
+    background-color: #f4f4f4;
+    white-space: nowrap; /* Evita que los encabezados se dividan en varias líneas */
+  }
+
+
+  .btn-atras {
+    width: 80px; /* Ajusta el ancho del botón */
+    height: 60px; /* Ajusta el alto del botón */
+    background-image: url('images/flechaatras.png'); /* Ruta de la imagen */
+    background-size: contain; /* Escala la imagen dentro del botón */
+    background-repeat: no-repeat; /* No repetir la imagen */
+    background-position: center; /* Centra la imagen en el botón */
+    border: none; /* Sin bordes */
+    cursor: pointer; /* Cambia el cursor a mano al pasar por el botón */
+    outline: none; /* Elimina contorno al hacer clic */
+    background-color: transparent; /* Fondo transparente */
+    display: inline-block; /* Asegura que se comporte como un elemento en línea */
+}
+
+#printButton {
+  position: relative;
+  color: white;
+  background-color: #007bff; /* Color de fondo del botón */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 15px;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+  display: flex; /* Usamos flexbox para centrar */
+  align-items: center; /* Centrado vertical */
+  justify-content: center; /* Centrado horizontal */
+  text-align: center;
+}
+
+#printButton:hover {
+  background-color: #000912; /* Color al pasar el mouse */
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente los botones */
+  align-items: center; /* Centra verticalmente los botones */
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Estilo para los botones dentro del footer */
+footer button {
+  background-color: white;
+  color: #007bff;
+  border: none;
+  border-radius: 10px; /* Borde redondeado */
+  cursor: pointer;
+  width: 50px; /* Ancho fijo */
+  height: 40px; /* Alto fijo */
+  font-size: 18px; /* Tamaño del texto */
+  transition: background-color 0.3s ease;
+  margin: 0 30px; /* Espaciado entre botones */
+  text-align: center;
+}
+
+footer button:hover {
+  background-color: #0056b3;
+  color: white;
+}
