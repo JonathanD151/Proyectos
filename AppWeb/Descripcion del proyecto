@@ -1,0 +1,14 @@
+Pagina Web local que permite realizar operaciones de lectura y escritura (CRUD) a una base de datos local.
+
+. Inicio de sesion mediante token
+  . El usuario no puede realizar operaciones si no ha iniciado sesion
+
+. Registro de pacientes
+. Consultar pacientes
+  . Consulta de pacientes por id, nombre, apellidos, celular, lista_negra y estado_paciente
+  . Imprimir datos de consulta
+  . Eliminar a pacientes de acuerdo a la consulta realizada
+
+.Actualizar datos de un paciente
+  . Permite actualizar los datos de un usuario por su identificador sin tener que llenar todos los campos
+
